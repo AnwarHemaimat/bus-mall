@@ -46,31 +46,33 @@ for(let i = 0 ; i < ImagesNames.length ; i++){
 function render(){
     const firstIndex=randomNumber(0,Image.all.length-1);
     const firstRandomImages=Image.all[firstIndex];
-    firstImage.src=firstRandomImages.path;
-    firstImage.title=firstRandomImages.name;
-    firstImage.alt=firstRandomImages.name;
+    first.src=firstRandomImages.path;
+    first.title=firstRandomImages.name;
+    first.alt=firstRandomImages.name;
   
     const secondIndex=randomNumber(0,Image.all.length-1);
     const secondRandomImages=Image.all[secondIndex];
-    secondImage.src=secondRandomImages.path;
-    secondImage.title=secondRandomImages.name;
-    secondImage.alt=secondRandomImages.name;
+    second.src=secondRandomImages.path;
+    second.title=secondRandomImages.name;
+    second.alt=secondRandomImages.name;
   
     const thirdIndex=randomNumber(0,Image.all.length-1);
     const thirdRandomImages=Image.all[thirdIndex];
-    thirdImage.src=thirdRandomImages.path;
-    thirdImage.title=thirdRandomImages.name;
-    thirdImage.alt=thirdRandomImages.name;
+    third.src=thirdRandomImages.path;
+    third.title=thirdRandomImages.name;
+    third.alt=thirdRandomImages.name;
   }
 
   imageSection.addEventListener('click',handleClick);
 
   function handleClick(event){
-    if (event.target.id === 'firstImage' || event.target.id === 'secondImage' || event.target.id === 'thirdImage'){
+    if (event.target.id === 'first' || event.target.id === 'second' || event.target.id === 'third'){
       for(let i = 0 ; i < Image.all.length ; i++){
         if (Image.all[i].name === event.target.title){
           Image.all[i].votes++;
+          clickRemining=clickRemining-1;
           console.table(Image.all[i])
+
         }
       }
       render();
