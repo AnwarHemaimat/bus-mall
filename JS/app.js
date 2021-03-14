@@ -1,6 +1,5 @@
 'use strict';
-let app= document.getElementById('app');
-let clickRemining=25;
+let clickRemining=0;
 const ImagesNames = [
     'bag',
     'banana',
@@ -70,9 +69,14 @@ function render(){
       for(let i = 0 ; i < Image.all.length ; i++){
         if (Image.all[i].name === event.target.title){
           Image.all[i].votes++;
-          clickRemining=clickRemining-1;
+        
           console.table(Image.all[i])
-
+          clickRemining++;
+          if (clickRemining === 25) {
+            firstImage.removeEventListener('click', handleClick);
+            secondImage.removeEventListener('click', handleClick);
+            thirdImage.removeEventListener('click', handleClick);
+          }
         }
       }
       render();
