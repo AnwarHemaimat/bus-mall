@@ -1,5 +1,5 @@
 'use strict';
-
+// Images Name
 const ImagesNames = [
   'bag',
   'banana',
@@ -22,6 +22,7 @@ const ImagesNames = [
   'water-can',
   'wine-glass',
 ]
+// Images Path
 const imgPath = [
   'img/bag.jpg',
   'img/banana.jpg',
