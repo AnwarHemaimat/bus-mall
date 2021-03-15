@@ -100,12 +100,26 @@ function handleClick(event) {
         Image.all[i].votes++;
         console.table(Image.all[i])
 
+imageSection.addEventListener('click', handleClick);
+
+let clickRemining = 25;
+
+function handleClick(event) {
+  clickRemining = clickRemining - 1;
+  if (event.target.id === 'first' || event.target.id === 'second' || event.target.id === 'third') {
+    for (let i = 0; i < Image.all.length; i++) {
+      if (Image.all[i].name === event.target.title) {
+        Image.all[i].votes++;
+        console.table(Image.all[i])
+
+
       }
     }
     render();
   }
   if (clickRemining === 0) {
     imageSection.removeEventListener('click', handleClick);
+
     alert (' You can not vote more than 25 !')
   }
 }
@@ -113,3 +127,55 @@ function handleClick(event) {
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+    creatChart();
+  }
+}
+
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function creatChart() {
+  let context = document.getElementById('imageChart').getContext('2d');
+  let getImageNames = [];
+  let getImagesVotes = [];
+
+  for (let i = 0; i < Image.all.length; i++) {
+    getImageNames.push(Image.all[i].name);
+  }
+  for (let i = 0; i < Image.all.length; i++) {
+    getImagesVotes.push(Image.all[i].votes);
+  }
+
+  let chartColors = ['#e6194b', '#3cb44b', '#ffe119', '#0082c8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#d2f53c', '#fabebe', '#008080', '#e6beff', '#aa6e28', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000080', '#000000'];
+  let chartObject = {
+    type: 'bar',
+
+    data: {
+      labels: getImageNames,
+      datasets: [{
+        label: 'Bus Mall voting results',
+        backgroundColor: chartColors,
+        borderColor: 'rgb(0, 191, 255)',
+        data: getImagesVotes
+      }
+      ]
+    },
+    options: {
+      scales: {
+        xAxes: [{
+          barPercentage: 0.4
+        }]
+      }
+    }
+  }
+  Chart.defaults.global.defaultFontColor = '#00004d';
+  Chart.defaults.global.defaultFontFamily = 'cursive';
+  Chart.defaults.global.defaultFontSize = 20;
+
+  let chart = new Chart(context, chartObject);
+
+}
+render();
+
