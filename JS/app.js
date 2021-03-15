@@ -100,12 +100,34 @@ function handleClick(event) {
         Image.all[i].votes++;
         console.table(Image.all[i])
 
+imageSection.addEventListener('click', handleClick);
+
+let clickRemining = 25;
+
+function handleClick(event) {
+  clickRemining = clickRemining - 1;
+  if (event.target.id === 'first' || event.target.id === 'second' || event.target.id === 'third') {
+    for (let i = 0; i < Image.all.length; i++) {
+      if (Image.all[i].name === event.target.title) {
+        Image.all[i].votes++;
+        console.table(Image.all[i])
+
+
       }
     }
     render();
   }
   if (clickRemining === 0) {
     imageSection.removeEventListener('click', handleClick);
+
+    alert (' You can not vote more than 25 !')
+  }
+}
+
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
     creatChart();
   }
 }
@@ -156,3 +178,4 @@ function creatChart() {
 
 }
 render();
+
