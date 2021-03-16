@@ -1,5 +1,5 @@
 'use strict';
-// Images Name
+
 const ImagesNames = [
   'bag',
   'banana',
@@ -54,19 +54,19 @@ const thirdImage = document.getElementById('third');
 
 
 function Image(name,imgPath) {
-  // this.imgName = ImagesNames;
   this.imgPath = imgPath;
   this.name = name;
   this.views = 0;
   this.votes = 0;
-  // this.path = `./img/${name}.jpg`;
   Image.all.push(this);
 }
 Image.all = []
 
+
 for (let i = 0; i < ImagesNames.length; i++) {
   new Image(ImagesNames[i], imgPath[i]);
 }
+
 
 function render() {
   const firstIndex = randomNumber(0, Image.all.length - 1);
@@ -106,12 +106,42 @@ function handleClick(event) {
   }
   if (clickRemining === 0) {
     imageSection.removeEventListener('click', handleClick);
+    renderStats();
     creatChart();
+    alert('You have finished 25 times to vote !');
+    localStorage.setItem('setImages', JSON.stringify(Image.all));
   }
+  render();
 }
 
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+let stats = document.getElementById('stats');
+
+function renderStats(){
+  let h1Element=document.createElement('h1');
+  h1Element.textContent='Total statistics';
+  h1Element.style.color='rgb(202, 10, 138)';
+  h1Element.style.fontFamily='cursive';
+  h1Element.style.fontSize= '40px';
+  h1Element.style.textAlign= 'center';
+  stats.appendChild(h1Element);
+
+  for(let i = 0 ; i < Image.all.length; i++){
+    let li = document.createElement('li');
+    li.textContent=Image.all[i].name + '  has (' + Image.all[i].votes + ')  votes ';
+    li.style.textAlign = 'center';
+    li.style.fontSize= '25px';
+    li.style.fontFamily = 'Georgia, Times New Roman, Times, serif';
+    li.style.paddingBottom='10px';
+    li.style.listStyleType='none';
+    li.style.listStylePosition='inside';
+    li.style.color= 'white';
+    li.style.backgroundColor='rgba(2, 75, 75, 0.664)';
+    stats.appendChild(li);
+  }
 }
 
 function creatChart() {
@@ -154,5 +184,14 @@ function creatChart() {
 
   let chart = new Chart(context, chartObject);
 
+}
+
+function checkStorage(){
+  if (localStorage.setImages){
+    let stringifyImages = localStorage.getItem('setImages');
+    Image.all = JSON.parse(stringifyImages);
+  }else {
+    // instantiatImages();
+  }
 }
 render();
