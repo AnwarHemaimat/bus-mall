@@ -1,0 +1,108 @@
+body {
+    background-color: rgba(247, 248, 186, 0.815);
+}
+
+header {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+body header:nth-child(1) {
+    background-color: rgb(5, 100, 100);
+    text-align: center;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+}
+
+body header nav ul li {
+    display: inline;
+    margin-left: -30px;
+    margin-right: 100px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 100;
+    /* margin-left: 20px; */
+    font-family: cursive;
+}
+
+@keyframes example2 {
+    from {
+        background-color: rgb(5, 100, 100);
+    }
+    to {
+        background-color: rgba(252, 47, 47, 0.705)
+    }
+}
+
+main section div h2 {
+    animation-name: example2;
+    animation-duration: 60s;
+    width: 650px;
+    font-family: cursive;
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+    margin-left: 300px;
+    color: rgb(255, 255, 255);
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+li {
+    font-family: 'Montserrat Alternates', sans-serif;
+    text-align: left;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(5, 100, 100);
+  }
+
+body header:nth-child(1) h1 {
+    text-align: center;
+    display: inline;
+    position: absolute;
+    left: 150px;
+    top: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(202, 10, 138);
+    font-family: cursive;
+    border: 3px solid;
+    color: seashell;
+    font-size: 30px;
+}
+
+tr {
+ 
+    background-color: rgb(5, 100, 100);
+  }
+  
+  th {
+    padding: 5px;
+  }
+  
+  td {
+    padding: 8px;
+  }
+  table, th, td {
+    border: 3px solid rgb(202, 10, 138);
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size:large;
+    font-family: cursive;
+    text-align: center;
+    color: white;
+  }
+  #cart{
+    margin-bottom: 30px;
+    margin-left: 500px;
+    margin-bottom: 80px;
+    font-family: sans-serif;
+    font-size: 22px;
+  }
