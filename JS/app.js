@@ -74,23 +74,30 @@ function render() {
   first.src = firstRandomImages.imgPath;
   first.title = firstRandomImages.name;
   first.alt = firstRandomImages.name;
+  console.log(Image.all[firstIndex].views);
+
+  Image.all[firstIndex].views++;
+  console.log(Image.all[firstIndex].views);
 
   const secondIndex = randomNumber(0, Image.all.length - 1);
   const secondRandomImages = Image.all[secondIndex];
   second.src = secondRandomImages.imgPath;
   second.title = secondRandomImages.name;
   second.alt = secondRandomImages.name;
+  Image.all[secondIndex].views++;
 
   const thirdIndex = randomNumber(0, Image.all.length - 1);
   const thirdRandomImages = Image.all[thirdIndex];
   third.src = thirdRandomImages.imgPath;
   third.title = thirdRandomImages.name;
   third.alt = thirdRandomImages.name;
+  Image.all[thirdIndex].views++;
+  
 }
 
 imageSection.addEventListener('click', handleClick);
 
-let clickRemining = 25;
+let clickRemining = 2;
 
 function handleClick(event) {
   clickRemining = clickRemining - 1;
@@ -131,7 +138,7 @@ function renderStats(){
 
   for(let i = 0 ; i < Image.all.length; i++){
     let li = document.createElement('li');
-    li.textContent=Image.all[i].name + '  has (' + Image.all[i].votes + ')  votes ';
+    li.textContent=Image.all[i].name + '  has (' + Image.all[i].votes + ')  votes , and the views are: ' + Image.all[i].views;
     li.style.textAlign = 'center';
     li.style.fontSize= '25px';
     li.style.fontFamily = 'Georgia, Times New Roman, Times, serif';
@@ -148,6 +155,7 @@ function creatChart() {
   let context = document.getElementById('imageChart').getContext('2d');
   let getImageNames = [];
   let getImagesVotes = [];
+  let getImagesViews = [];
 
   for (let i = 0; i < Image.all.length; i++) {
     getImageNames.push(Image.all[i].name);
@@ -155,6 +163,11 @@ function creatChart() {
   for (let i = 0; i < Image.all.length; i++) {
     getImagesVotes.push(Image.all[i].votes);
   }
+  for (let i = 0 ; i < Image.all.length ; i++){
+    getImagesViews.push(Image.all[i].views);
+  }
+  console.log(getImagesViews);
+
 
   let chartColors = ['#e6194b', '#3cb44b', '#ffe119', '#0082c8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#d2f53c', '#fabebe', '#008080', '#e6beff', '#aa6e28', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000080', '#000000'];
   let chartObject = {
@@ -166,7 +179,13 @@ function creatChart() {
         label: 'Bus Mall voting results',
         backgroundColor: chartColors,
         borderColor: 'rgb(0, 191, 255)',
-        data: getImagesVotes
+        data: getImagesVotes ,
+      },
+      {
+        label: 'Bus Mall views results',
+        backgroundColor: chartColors,
+        borderColor: 'rgb(7, 79, 104)',
+        data: getImagesViews ,
       }
       ]
     },
@@ -190,8 +209,8 @@ function checkStorage(){
   if (localStorage.setImages){
     let stringifyImages = localStorage.getItem('setImages');
     Image.all = JSON.parse(stringifyImages);
-  }else {
-    // instantiatImages();
   }
+
 }
+checkStorage();
 render();
