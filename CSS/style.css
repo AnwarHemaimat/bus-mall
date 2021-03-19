@@ -100,7 +100,7 @@ li {
   height: 90px;
   width: 1500px;
 } */
-
+/* 
 #catalog{
   margin-bottom: 30px;
   margin-left: 350px;
@@ -120,7 +120,7 @@ fieldset{
 }
 
 form legend{
-/* background-color: #ff00b3; */
+background-color: #ff00b3;
 font-family:cursive;
 margin-bottom: 30px;
 font-weight: bold;
@@ -138,4 +138,4 @@ input{
   color: rgb(5, 100, 100) ;
   background-color: rgb(238, 214, 230);
   text-align: center;
-}
+} */
